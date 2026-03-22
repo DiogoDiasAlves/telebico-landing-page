@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>TELEBICO | Ganhe dinheiro prestando serviços</title>
+  <meta name="description" content="Receba pedidos de clientes perto de você e pague só 10% quando fechar um serviço. Sem taxas fixas, sem mensalidade. Baixe o app TELEBICO." />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-surface-variant": "#434655",
+            "tertiary": "#943700",
+            "background": "#faf8ff",
+            "on-secondary-fixed": "#00174b",
+            "surface-variant": "#e1e2ed",
+            "on-error": "#ffffff",
+            "on-secondary": "#ffffff",
+            "tertiary-fixed": "#ffdbcd",
+            "surface-container-highest": "#e1e2ed",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "primary-fixed-dim": "#b4c5ff",
+            "on-tertiary": "#ffffff",
+            "secondary-fixed": "#dbe1ff",
+            "primary-fixed": "#dbe1ff",
+            "on-background": "#191b23",
+            "surface-bright": "#faf8ff",
+            "tertiary-container": "#bc4800",
+            "secondary-container": "#acbfff",
+            "on-tertiary-fixed": "#360f00",
+            "on-secondary-fixed-variant": "#31447b",
+            "on-primary": "#ffffff",
+            "on-secondary-container": "#394c84",
+            "inverse-primary": "#b4c5ff",
+            "primary": "#004ac6",
+            "outline-variant": "#c3c6d7",
+            "surface-container-low": "#f3f3fe",
+            "outline": "#737686",
+            "secondary-fixed-dim": "#b4c5ff",
+            "surface-tint": "#0053db",
+            "on-primary-fixed-variant": "#003ea8",
+            "surface-dim": "#d9d9e5",
+            "on-surface": "#191b23",
+            "surface-container": "#ededf9",
+            "on-error-container": "#93000a",
+            "surface-container-high": "#e7e7f3",
+            "error-container": "#ffdad6",
+            "on-tertiary-container": "#ffede6",
+            "primary-container": "#2563eb",
+            "inverse-surface": "#2e3039",
+            "on-primary-container": "#eeefff",
+            "surface": "#faf8ff",
+            "tertiary-fixed-dim": "#ffb596",
+            "inverse-on-surface": "#f0f0fb",
+            "secondary": "#495c95",
+            "on-primary-fixed": "#00174b",
+            "on-tertiary-fixed-variant": "#7d2d00"
+          },
+          fontFamily: {
+            "headline": ["Manrope", "sans-serif"],
+            "body": ["Manrope", "sans-serif"],
+            "label": ["Manrope", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Glassmorphism cards — design system §4 & §2 */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* Signature floating nav — design system §5 */
+    .header-glass {
+      background: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav-pill-bg {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Ambient shadows — design system §4 */
+    .ambient-shadow {
+      box-shadow: 0px 20px 40px rgba(25, 27, 35, 0.06);
+    }
+
+    /* Ghost border — design system §4 */
+    .ghost-border {
+      border: 1px solid rgba(195, 198, 215, 0.15);
+    }
+
+    /* Hero gradient overlay */
+    .hero-gradient {
+      background: linear-gradient(to right, rgba(15, 23, 42, 1), rgba(15, 23, 42, 0.8), transparent);
+    }
+
+    /* Smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Micro-animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    .float-anim {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    .fade-in-up-delay-1 { animation-delay: 0.15s; opacity: 0; }
+    .fade-in-up-delay-2 { animation-delay: 0.3s; opacity: 0; }
+    .fade-in-up-delay-3 { animation-delay: 0.45s; opacity: 0; }
+    .fade-in-up-delay-4 { animation-delay: 0.6s; opacity: 0; }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+    .pulse-glow {
+      animation: pulse-glow 4s ease-in-out infinite;
+    }
+
+    /* Mobile nav */
+    .mobile-menu {
+      transform: translateY(-120%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .mobile-menu.open {
+      transform: translateY(0);
+    }
+
+    /* ═══ Phone Mockup Styles ═══ */
+    .phone-wrapper {
+      perspective: 1200px;
+    }
+
+    .phone-frame {
+      width: 280px;
+      height: 580px;
+      background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+      border-radius: 3rem;
+      padding: 10px;
+      position: relative;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.08),
+        0 25px 60px -10px rgba(0,0,0,0.5),
+        0 0 80px rgba(37,99,235,0.2);
+    }
+
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #f8faff 0%, #eef2ff 100%);
+      border-radius: 2.2rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .phone-notch {
+      width: 100px;
+      height: 28px;
+      background: #0f0f1a;
+      border-radius: 0 0 1.2rem 1.2rem;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
+
+    .phone-notch::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: #1e293b;
+      border-radius: 50%;
+      position: absolute;
+      right: 18px;
+      top: 8px;
+      box-shadow: inset 0 0 2px rgba(37,99,235,0.5);
+    }
+
+    .phone-back {
+      width: 280px;
+      height: 580px;
+      background: linear-gradient(145deg, #1a1a2e, #0f0f1a);
+      border-radius: 3rem;
+      position: absolute;
+      top: -20px;
+      left: -30px;
+      opacity: 0.25;
+      filter: blur(2px);
+      transform: rotate(16deg) scale(0.92);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+
+    .phone-glow {
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(ellipse at center, rgba(37,99,235,0.3) 0%, transparent 70%);
+      filter: blur(40px);
+      z-index: -1;
+    }
+
+    @keyframes float-phone {
+      0%, 100% { transform: rotate(12deg) translateY(0px); }
+      50% { transform: rotate(12deg) translateY(-14px); }
+    }
+    .float-phone {
+      animation: float-phone 6s ease-in-out infinite;
+      transform: rotate(12deg);
+    }
+
+    @keyframes notification-pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+    }
+    .notification-dot {
+      animation: notification-pulse 2s ease-in-out infinite;
+    }
+
+    .service-card-app {
+      background: white;
+      border-radius: 1rem;
+      padding: 12px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 8px rgba(25,27,35,0.06);
+    }
+
+    .floating-badge {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    @keyframes badge-float {
+      0%, 100% { transform: translateY(0px) rotate(-3deg); }
+      50% { transform: translateY(-8px) rotate(-3deg); }
+    }
+    .badge-float {
+      animation: badge-float 5s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+  </style>
+</head>
+<body class="bg-background font-body text-on-background antialiased">
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- TopNavBar — Signature floating pill nav (design system §5) -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <nav id="main-nav" class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl px-8 py-3 header-glass rounded-full flex justify-between items-center z-50" style="box-shadow: 0px 20px 40px rgba(25,27,35,0.12);">
+    <!-- Logo -->
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
+        <span class="material-symbols-outlined text-white text-xl">account_balance_wallet</span>
+      </div>
+      <div class="text-xl font-extrabold tracking-tighter text-white uppercase">TELEBICO</div>
+    </div>
+
+    <!-- Centered Navigation -->
+    <div class="hidden lg:flex items-center nav-pill-bg px-2 py-1 rounded-full">
+      <a id="nav-inicio" class="px-5 py-2 rounded-full bg-white/15 text-white text-sm font-semibold flex items-center gap-2 transition-all" href="#inicio">
+        <span class="material-symbols-outlined text-sm">home</span>
+        Início
+      </a>
+      <a id="nav-como-funciona" class="px-5 py-2 text-slate-300 hover:text-white transition-colors text-sm font-medium" href="#como-funciona">Como Funciona</a>
+      <a id="nav-diferenciais" class="px-5 py-2 text-slate-300 hover:text-white transition-colors text-sm font-medium" href="#diferenciais">Diferenciais</a>
+      <a id="nav-baixar" class="px-5 py-2 text-slate-300 hover:text-white transition-colors text-sm font-medium" href="#baixar">Baixar App</a>
+    </div>
+
+    <!-- Right Actions -->
+    <div class="flex items-center gap-6">
+      <div class="hidden md:flex items-center gap-2 text-slate-300 hover:text-white cursor-pointer transition-colors group">
+        <span class="material-symbols-outlined text-lg">language</span>
+        <span class="text-sm font-medium">Pt-BR</span>
+        <span class="material-symbols-outlined text-sm group-hover:translate-y-0.5 transition-transform">expand_more</span>
+      </div>
+      <button id="btn-login" class="bg-white text-slate-950 px-6 py-2.5 rounded-full font-bold text-sm hover:bg-slate-100 transition-all active:scale-95" style="box-shadow: 0px 10px 30px rgba(255,255,255,0.08);">
+        Login / Registro
+      </button>
+      <!-- Mobile hamburger -->
+      <button id="mobile-menu-toggle" class="lg:hidden text-white" aria-label="Abrir menu">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu fixed inset-x-0 top-0 z-40 bg-slate-900/95 backdrop-blur-xl pt-24 pb-8 px-8 rounded-b-[2rem]">
+    <div class="flex flex-col gap-4">
+      <a class="text-white text-lg font-semibold py-3 border-b border-white/10" href="#inicio" onclick="closeMobileMenu()">Início</a>
+      <a class="text-slate-300 text-lg font-medium py-3 border-b border-white/10" href="#como-funciona" onclick="closeMobileMenu()">Como Funciona</a>
+      <a class="text-slate-300 text-lg font-medium py-3 border-b border-white/10" href="#diferenciais" onclick="closeMobileMenu()">Diferenciais</a>
+      <a class="text-slate-300 text-lg font-medium py-3" href="#baixar" onclick="closeMobileMenu()">Baixar App</a>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- Hero Section — Full-bleed with asymmetric layout   -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="relative min-h-screen pt-32 pb-20 flex items-center overflow-hidden" id="inicio">
+    <!-- Background Image + Gradient Overlay -->
+    <div class="absolute inset-0 z-0">
+      <div class="hero-gradient absolute inset-0 z-10"></div>
+      <img
+        alt="Profissional eletricista trabalhando"
+        class="w-full h-full object-cover"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXnUXs36XnSN3pVKf_Hdq0rh2XhXYj4_UZ5cicFM4IfA9tSX3avxC8HOJL9jzD0ka-uBgpfXLnU1sBiOPnYYhFgpqdUxxmp-GMV3POw_eT9sYLZTY0VhZ9v81AeOKnYoio7F15Sg1ifaBbsZ18YkQA42AIxSQvBC3paNuBQc9irAztzzsG7Pi9wTBP1vNF8AxEorfR0pev6qnbWnjSx-PPlKp_xBtjefiVkATFbj7f4QKycssZD6HCBtLd-XM3I27T9kSuQLIr06g"
+      />
+    </div>
+
+    <div class="container mx-auto px-6 relative z-20 grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left: Copy -->
+      <div class="max-w-2xl">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-primary/20 text-primary-fixed-dim text-xs font-bold tracking-widest uppercase mb-6 fade-in-up">
+          OPORTUNIDADE PARA PROFISSIONAIS
+        </span>
+        <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-[1.1] tracking-tight mb-6 fade-in-up fade-in-up-delay-1" style="letter-spacing: -0.02em;">
+          Ganhe dinheiro prestando serviços com o <span class="text-primary-container">TELEBICO</span>
+        </h1>
+        <p class="text-xl text-slate-300 mb-10 leading-relaxed fade-in-up fade-in-up-delay-2">
+          Receba pedidos de clientes perto de você e pague só 10% quando fechar um serviço. Sem taxas fixas, sem mensalidade.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-12 fade-in-up fade-in-up-delay-3" id="baixar">
+          <a id="cta-ios" class="flex items-center justify-center gap-3 bg-white text-slate-900 px-8 py-4 rounded-full font-bold hover:bg-slate-100 transition-all active:scale-95" href="#" style="box-shadow: 0px 20px 40px rgba(25,27,35,0.15);">
+            <span class="material-symbols-outlined">phone_iphone</span>
+            Baixar App (iOS)
+          </a>
+          <a id="cta-android" class="flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-white hover:opacity-90 transition-all active:scale-95" href="#" style="background: linear-gradient(135deg, #004ac6, #2563eb); box-shadow: 0px 20px 40px rgba(37,99,235,0.3);">
+            <span class="material-symbols-outlined">android</span>
+            Baixar App (Android)
+          </a>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="flex items-center gap-4 text-slate-400 fade-in-up fade-in-up-delay-4">
+          <div class="flex -space-x-2">
+            <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-xs font-bold text-white">JS</div>
+            <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-xs font-bold text-white">MR</div>
+            <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-800 flex items-center justify-center text-xs font-bold text-white">AC</div>
+          </div>
+          <p class="text-sm font-medium">+2.500 profissionais já faturando na plataforma</p>
+        </div>
+      </div>
+
+      <!-- Right: Premium App Mockup -->
+      <div class="relative hidden lg:flex justify-center items-center phone-wrapper">
+        <!-- Blue brand glow -->
+        <div class="phone-glow"></div>
+
+        <!-- Back phone (stacked depth effect) -->
+        <div class="phone-back"></div>
+
+        <!-- Floating notification badge -->
+        <div class="absolute -top-2 -right-4 z-30 badge-float">
+          <div class="floating-badge px-4 py-2.5 rounded-2xl flex items-center gap-2.5 shadow-xl">
+            <div class="relative">
+              <span class="material-symbols-outlined text-primary-container text-lg">notifications</span>
+              <span class="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full notification-dot"></span>
+            </div>
+            <div>
+              <span class="text-white text-xs font-bold block">+3 novos serviços</span>
+              <span class="text-slate-400 text-[10px]">na sua região agora</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main phone -->
+        <div class="relative z-10 float-phone">
+          <div class="phone-frame">
+            <div class="phone-screen">
+              <!-- Dynamic Island / Notch -->
+              <div class="phone-notch"></div>
+
+              <!-- Status Bar -->
+              <div class="flex justify-between items-center px-5 py-1.5" style="font-size: 9px; color: #64748b;">
+                <span class="font-semibold">9:41</span>
+                <div class="flex items-center gap-1">
+                  <span class="material-symbols-outlined" style="font-size: 11px;">signal_cellular_alt</span>
+                  <span class="material-symbols-outlined" style="font-size: 11px;">wifi</span>
+                  <span class="material-symbols-outlined" style="font-size: 11px;">battery_full</span>
+                </div>
+              </div>
+
+              <!-- App Header -->
+              <div class="px-4 pt-1 pb-3">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-1.5">
+                    <div class="w-5 h-5 rounded-md flex items-center justify-center" style="background: linear-gradient(135deg, #004ac6, #2563eb);">
+                      <span class="material-symbols-outlined text-white" style="font-size: 11px;">account_balance_wallet</span>
+                    </div>
+                    <span style="font-size: 11px; font-weight: 800; color: #0f172a; letter-spacing: -0.02em;">TELEBICO</span>
+                  </div>
+                  <div class="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center">
+                    <span class="material-symbols-outlined" style="font-size: 12px; color: #64748b;">person</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Section Title -->
+              <div class="px-4 pb-2">
+                <span style="font-size: 14px; font-weight: 700; color: #0f172a;">Serviços Disponíveis</span>
+                <div class="flex items-center gap-1 mt-0.5">
+                  <span class="material-symbols-outlined" style="font-size: 10px; color: #22c55e;">circle</span>
+                  <span style="font-size: 9px; color: #64748b;">3 serviços perto de você</span>
+                </div>
+              </div>
+
+              <!-- Notification Banner -->
+              <div class="mx-4 mb-2 px-3 py-2 rounded-xl flex items-center gap-2" style="background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(37,99,235,0.05)); border: 1px solid rgba(37,99,235,0.15);">
+                <span style="font-size: 13px;">🔥</span>
+                <span style="font-size: 9px; font-weight: 600; color: #2563eb;">Novo serviço disponível agora!</span>
+                <div class="ml-auto w-1.5 h-1.5 bg-red-500 rounded-full notification-dot"></div>
+              </div>
+
+              <!-- Service Card 1 (Featured) -->
+              <div class="mx-4 service-card-app" style="border: 1px solid rgba(37,99,235,0.12);">
+                <div class="flex items-start justify-between mb-2">
+                  <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background: rgba(37,99,235,0.1);">
+                      <span class="material-symbols-outlined" style="font-size: 14px; color: #2563eb;">electric_bolt</span>
+                    </div>
+                    <div>
+                      <span style="font-size: 10px; font-weight: 700; color: #0f172a; display: block;">Instalação Elétrica</span>
+                      <span style="font-size: 8px; color: #94a3b8;">Residencial · Hoje, 14:00</span>
+                    </div>
+                  </div>
+                  <span style="font-size: 12px; font-weight: 800; color: #059669;">R$ 180</span>
+                </div>
+                <div class="flex items-center gap-3 mb-2.5">
+                  <div class="flex items-center gap-0.5">
+                    <span class="material-symbols-outlined" style="font-size: 10px; color: #2563eb;">location_on</span>
+                    <span style="font-size: 8px; color: #64748b; font-weight: 500;">2km de você</span>
+                  </div>
+                  <div class="flex items-center gap-0.5">
+                    <span class="material-symbols-outlined" style="font-size: 10px; color: #f59e0b;">star</span>
+                    <span style="font-size: 8px; color: #64748b;">Cliente 4.9★</span>
+                  </div>
+                </div>
+                <button class="w-full py-1.5 rounded-lg text-white font-bold" style="font-size: 9px; background: linear-gradient(135deg, #004ac6, #2563eb); letter-spacing: 0.02em;">Aceitar Serviço →</button>
+              </div>
+
+              <!-- Service Card 2 -->
+              <div class="mx-4 service-card-app">
+                <div class="flex items-start justify-between mb-1.5">
+                  <div class="flex items-center gap-2">
+                    <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background: rgba(37,99,235,0.1);">
+                      <span class="material-symbols-outlined" style="font-size: 14px; color: #2563eb;">plumbing</span>
+                    </div>
+                    <div>
+                      <span style="font-size: 10px; font-weight: 700; color: #0f172a; display: block;">Reparo Hidráulico</span>
+                      <span style="font-size: 8px; color: #94a3b8;">Comercial · Amanhã, 09:00</span>
+                    </div>
+                  </div>
+                  <span style="font-size: 12px; font-weight: 800; color: #059669;">R$ 120</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="flex items-center gap-0.5">
+                    <span class="material-symbols-outlined" style="font-size: 10px; color: #2563eb;">location_on</span>
+                    <span style="font-size: 8px; color: #64748b; font-weight: 500;">1.5km</span>
+                  </div>
+                  <div class="flex items-center gap-0.5">
+                    <span class="material-symbols-outlined" style="font-size: 10px; color: #f59e0b;">star</span>
+                    <span style="font-size: 8px; color: #64748b;">Cliente 4.7★</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Service Card 3 (partial, creates scroll illusion) -->
+              <div class="mx-4 service-card-app" style="opacity: 0.5; transform: translateY(2px);">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-lg flex items-center justify-center" style="background: rgba(37,99,235,0.1);">
+                    <span class="material-symbols-outlined" style="font-size: 14px; color: #2563eb;">format_paint</span>
+                  </div>
+                  <div>
+                    <span style="font-size: 10px; font-weight: 700; color: #0f172a; display: block;">Pintura de Parede</span>
+                    <span style="font-size: 8px; color: #94a3b8;">Residencial · Sábado</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bottom Nav Bar -->
+              <div class="absolute bottom-0 left-0 right-0 px-4 py-2.5 flex justify-around items-center" style="background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-top: 1px solid rgba(0,0,0,0.04);">
+                <div class="flex flex-col items-center gap-0.5">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: #2563eb; font-variation-settings: 'FILL' 1;">home</span>
+                  <span style="font-size: 7px; color: #2563eb; font-weight: 700;">Início</span>
+                </div>
+                <div class="flex flex-col items-center gap-0.5">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: #94a3b8;">search</span>
+                  <span style="font-size: 7px; color: #94a3b8;">Buscar</span>
+                </div>
+                <div class="flex flex-col items-center gap-0.5">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: #94a3b8;">chat_bubble_outline</span>
+                  <span style="font-size: 7px; color: #94a3b8;">Chat</span>
+                </div>
+                <div class="flex flex-col items-center gap-0.5">
+                  <span class="material-symbols-outlined" style="font-size: 16px; color: #94a3b8;">person_outline</span>
+                  <span style="font-size: 7px; color: #94a3b8;">Perfil</span>
+                </div>
+              </div>
+
+            </div><!-- /phone-screen -->
+          </div><!-- /phone-frame -->
+        </div><!-- /float-phone -->
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- Section 1: Como Funciona — 4-step process          -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="py-24 bg-surface" id="como-funciona">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <h2 class="text-4xl font-extrabold text-on-background mb-6 tracking-tight" style="letter-spacing: -0.02em;">Comece a faturar hoje mesmo</h2>
+        <p class="text-on-surface-variant text-lg">Um processo simples e transparente feito para valorizar o seu trabalho e o seu tempo.</p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+        <!-- Step 1 -->
+        <div id="step-cadastro" class="group p-8 rounded-xl bg-surface-container-low hover:bg-surface-container-lowest transition-all ghost-border">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-3xl">how_to_reg</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Cadastre-se</h3>
+          <p class="text-on-surface-variant leading-relaxed">Crie seu perfil profissional detalhando suas habilidades e especialidades.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step-pedidos" class="group p-8 rounded-xl bg-surface-container-low hover:bg-surface-container-lowest transition-all ghost-border">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-3xl">notifications_active</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Receba Pedidos</h3>
+          <p class="text-on-surface-variant leading-relaxed">Seja notificado sempre que alguém na sua região precisar dos seus serviços.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div id="step-propostas" class="group p-8 rounded-xl bg-surface-container-low hover:bg-surface-container-lowest transition-all ghost-border">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-3xl">send</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Envie Propostas</h3>
+          <p class="text-on-surface-variant leading-relaxed">Converse com o cliente pelo chat e envie seu orçamento de forma rápida.</p>
+        </div>
+
+        <!-- Step 4 -->
+        <div id="step-fechar" class="group p-8 rounded-xl bg-surface-container-low hover:bg-surface-container-lowest transition-all ghost-border">
+          <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-3xl">task_alt</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Feche Serviços</h3>
+          <p class="text-on-surface-variant leading-relaxed">Finalize o trabalho, receba seu pagamento e seja avaliado pelo cliente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- Section 2: Diferencial — Pricing comparison         -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="py-24 relative overflow-hidden" id="diferenciais">
+    <div class="container mx-auto px-6">
+      <div class="bg-inverse-surface text-white rounded-[3rem] p-12 md:p-20 relative overflow-hidden" style="box-shadow: 0px 20px 40px rgba(25,27,35,0.15);">
+        <!-- Background glow -->
+        <div class="absolute top-0 right-0 w-1/3 h-full bg-primary/10 blur-[120px] rounded-full"></div>
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center relative z-10">
+          <!-- Left: Copy -->
+          <div>
+            <div class="inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full mb-8">
+              <span class="material-symbols-outlined text-primary-fixed-dim">verified</span>
+              <span class="text-sm font-bold tracking-widest uppercase">O MELHOR DO MERCADO</span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-extrabold mb-8 leading-tight" style="letter-spacing: -0.02em;">APENAS 10% POR SERVIÇO FECHADO</h2>
+            <p class="text-slate-300 text-xl mb-12 leading-relaxed">
+              Esqueça as mensalidades fixas que pesam no seu bolso antes mesmo de você ganhar. No TELEBICO, nossa parceria é justa.
+            </p>
+            <ul class="space-y-6">
+              <li class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary-container">check_circle</span>
+                <span class="text-lg font-medium">Sem mensalidade obrigatória</span>
+              </li>
+              <li class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary-container">check_circle</span>
+                <span class="text-lg font-medium">Sem risco financeiro</span>
+              </li>
+              <li class="flex items-center gap-4">
+                <span class="material-symbols-outlined text-primary-container">check_circle</span>
+                <span class="text-lg font-medium">Você só paga quando realmente ganha</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right: Comparison cards -->
+          <div class="grid grid-cols-2 gap-4">
+            <div class="bg-white/5 backdrop-blur-md p-8 rounded-[2rem] ghost-border">
+              <span class="text-slate-400 block mb-2 text-sm uppercase font-bold tracking-wider">Concorrência</span>
+              <div class="text-3xl font-bold text-error line-through mb-4">R$ 150/mês</div>
+              <p class="text-slate-400 text-sm">Taxa fixa, mesmo se você não fechar nenhum serviço.</p>
+            </div>
+            <div class="backdrop-blur-md p-8 rounded-[2rem] transform lg:-translate-y-8" style="background: linear-gradient(135deg, rgba(0,74,198,0.25), rgba(37,99,235,0.3)); border: 1px solid rgba(37,99,235,0.3);">
+              <span class="text-primary-container block mb-2 text-sm uppercase font-bold tracking-wider">Telebico</span>
+              <div class="text-3xl font-bold text-white mb-4">10%</div>
+              <p class="text-slate-200 text-sm">Só paga com o dinheiro já garantido no bolso.</p>
+            </div>
+            <div class="col-span-2 bg-white/5 backdrop-blur-md p-8 rounded-[2rem] ghost-border mt-4">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-slate-200 font-bold">Transparência Total</span>
+                <span class="material-symbols-outlined text-primary-container">visibility</span>
+              </div>
+              <p class="text-slate-400 text-sm leading-relaxed">Acompanhe todos os seus rendimentos e taxas aplicadas diretamente no painel do aplicativo em tempo real.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- Section 3: Benefícios — Bento Grid                 -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <section class="py-24 bg-surface-container-low">
+    <div class="container mx-auto px-6">
+      <div class="text-center max-w-2xl mx-auto mb-20">
+        <h2 class="text-4xl font-extrabold mb-4 tracking-tight" style="letter-spacing: -0.02em;">Liberdade para crescer</h2>
+        <p class="text-on-surface-variant">Tudo o que você precisa para alavancar sua carreira como prestador de serviços.</p>
+      </div>
+
+      <!-- Bento Grid -->
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Large card: Trabalhe no seu horário -->
+        <div id="card-horario" class="md:col-span-2 bg-surface-container-lowest p-10 rounded-[2.5rem] ambient-shadow ghost-border flex flex-col justify-between">
+          <div>
+            <span class="material-symbols-outlined text-4xl text-primary mb-6">schedule</span>
+            <h3 class="text-2xl font-bold mb-4">Trabalhe no seu horário</h3>
+            <p class="text-on-surface-variant text-lg max-w-md">Você é seu próprio chefe. Ative sua disponibilidade quando quiser e atenda apenas nos horários que forem convenientes para você.</p>
+          </div>
+          <div class="mt-12 flex gap-2">
+            <span class="px-4 py-2 bg-surface-container-high rounded-full text-xs font-bold uppercase tracking-wider">Flexibilidade</span>
+            <span class="px-4 py-2 bg-surface-container-high rounded-full text-xs font-bold uppercase tracking-wider">Autonomia</span>
+          </div>
+        </div>
+
+        <!-- Accent card: Aumente sua renda -->
+        <div id="card-renda" class="p-10 rounded-[2.5rem] flex flex-col justify-between text-white" style="background: linear-gradient(135deg, #004ac6, #2563eb); box-shadow: 0px 20px 40px rgba(37,99,235,0.2);">
+          <div>
+            <span class="material-symbols-outlined text-4xl mb-6">trending_up</span>
+            <h3 class="text-2xl font-bold mb-4">Aumente sua renda</h3>
+            <p class="text-white/80">Chega de depender apenas de indicações. Expanda sua base de clientes exponencialmente.</p>
+          </div>
+          <div class="mt-8 text-5xl font-black opacity-20">ROI+</div>
+        </div>
+
+        <!-- Card: Clientes na região -->
+        <div id="card-regiao" class="bg-surface-container-lowest p-10 rounded-[2.5rem] ambient-shadow ghost-border">
+          <span class="material-symbols-outlined text-4xl text-primary mb-6">location_on</span>
+          <h3 class="text-2xl font-bold mb-4">Clientes na região</h3>
+          <p class="text-on-surface-variant">Economize tempo e combustível atendendo chamados próximos de onde você já está.</p>
+        </div>
+
+        <!-- Wide dark card: Sem burocracia -->
+        <div id="card-burocracia" class="md:col-span-2 bg-inverse-surface text-white p-10 rounded-[2.5rem] flex items-center gap-10" style="box-shadow: 0px 20px 40px rgba(25,27,35,0.1);">
+          <div class="hidden sm:block flex-shrink-0">
+            <img
+              alt="Profissional encanador"
+              class="w-40 h-40 object-cover rounded-[1.5rem] rotate-3"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlQiaBTyaBgdB8vJZHCC3EE1XGUYBtPbHY9gtBCyO2h-y2dIHQusWiJz-CWz5vDwVgr4AQB555y_auoF4b3TqKDdARFxoEfabON_Hp4fJsfBZDiLthIM9ng7e9DOKsR4aYJdoguRGYPs2RdYWvBtby8ySTrOwa-0QWCMcrvtTnUAO6UhT_hP07GYlnrVTCyLuJduShvfPocpeJPQ8i7sIWdqvB3fslLfvX9_49szEt3vAm4Sg0lXnU1ytVIrln9abfhVPBiylovNM"
+            />
+          </div>
+          <div>
+            <span class="material-symbols-outlined text-4xl text-primary-container mb-6">description</span>
+            <h3 class="text-2xl font-bold mb-4">Sem burocracia</h3>
+            <p class="text-slate-400">Processo de verificação rápido. Em poucos dias você já estará recebendo seus primeiros chamados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════ -->
+  <!-- Footer                                              -->
+  <!-- ═══════════════════════════════════════════════════ -->
+  <footer class="w-full rounded-t-[3rem] mt-20 bg-surface-container-low">
+    <div class="flex flex-col md:flex-row justify-between items-center px-8 py-12 max-w-7xl mx-auto">
+      <!-- Brand -->
+      <div class="mb-8 md:mb-0">
+        <div class="text-lg font-black text-on-background mb-4">TELEBICO</div>
+        <p class="text-sm text-on-surface-variant max-w-xs">
+          Conectando os melhores profissionais aos clientes que precisam de soluções rápidas e seguras.
+        </p>
+      </div>
+
+      <!-- Links -->
+      <div class="flex flex-wrap justify-center gap-8 mb-8 md:mb-0">
+        <a class="text-sm text-outline hover:text-primary transition-colors" href="#">Termos de Uso</a>
+        <a class="text-sm text-outline hover:text-primary transition-colors" href="#">Privacidade</a>
+        <a class="text-sm text-outline hover:text-primary transition-colors" href="#">Suporte</a>
+        <a class="text-sm text-outline hover:text-primary transition-colors" href="#">Trabalhe Conosco</a>
+      </div>
+
+      <!-- Copyright + Social -->
+      <div class="text-right">
+        <p class="text-sm text-on-surface-variant mb-4">© 2024 TELEBICO. Todos os direitos reservados.</p>
+        <div class="flex justify-end gap-4">
+          <a id="social-share" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-primary-container hover:text-white transition-all" href="#">
+            <span class="material-symbols-outlined text-sm">share</span>
+          </a>
+          <a id="social-mail" class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:bg-primary-container hover:text-white transition-all" href="#">
+            <span class="material-symbols-outlined text-sm">mail</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ═══════════════════════ -->
+  <!-- Scripts                 -->
+  <!-- ═══════════════════════ -->
+  <script>
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      mobileToggle.querySelector('span').textContent = 'menu';
+    }
+
+    mobileToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      mobileToggle.querySelector('span').textContent = isOpen ? 'close' : 'menu';
+    });
+
+    // Intersection Observer for scroll-triggered animations
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('#como-funciona .group, #diferenciais .grid > div, .grid.md\\:grid-cols-3 > div').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      observer.observe(el);
+    });
+
+    // Navbar background boost on scroll
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.style.background = 'rgba(15, 23, 42, 0.85)';
+      } else {
+        nav.style.background = 'rgba(15, 23, 42, 0.4)';
+      }
+    });
+  </script>
+</body>
+</html>
